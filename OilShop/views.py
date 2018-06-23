@@ -6,4 +6,4 @@ def main_page(request):
 
 
 def meow(request):
-    return render(request, 'meow.html')
+    return render(request, 'blank.html')
