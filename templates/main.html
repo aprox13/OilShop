@@ -1,4 +1,5 @@
 {% extends 'generic.html' %}
+{% load staticfiles %}
 
 {% block page_title %}Oil Shop{% endblock %}
 
@@ -11,8 +12,8 @@
         }
 
         .logo-block {
-            background: url("http://www.zastavki.com/pictures/1920x1200/2010/Nature_Fields_Path_through_the_field_025473_.jpg");
-            background-size: cover;
+            background: url("{% static 'main/main_page_logo_back.jpg' %}");
+        {#background: url("http://www.zastavki.com/pictures/1920x1200/2010/Nature_Fields_Path_through_the_field_025473_.jpg");#} background-size: cover;
             height: 100vh;
             position: relative;
         }
@@ -54,20 +55,77 @@
             }
         }
 
-        .nav-block {
-            width: 100%;
-            height: 100px;
-            background: red;
-        }
-
         .nav-block-active {
             position: fixed;
         }
 
-        .content {
-            height: 200vh;
+        .block-content {
+            min-height: 100vh;
+        }
+
+        .nav-block {
+            width: 100%;
+            background: #303952;
+            line-height: 50px;
+        {#max-height: 10vh;#}
+        }
+
+        .about {
+            background: #f5cd79;
+        }
+
+        .products {
+            background: #f19066;
+        }
+
+        .recipe {
+            background: #e66767;
+        }
+
+        .brand_logo {
+            width: 70px;
+        }
+
+        .navbar-list {
+            font-size: 18pt !important;
+        }
+
+        .brdr {
+            border: 1px red solid;
+        }
+
+        .img-sm {
+            max-height: 20vh;
+        }
+
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content-about {
+            max-height: 30%;
+            width: 50%;
+            display: flex;
+        }
+
+        .about-block {
+            border: 1px solid;
+            max-height: 30%;
+        }
+
+        .img-about {
+            max-height: 10vh;
+        }
+
+        .card{
+            padding: 10px;
         }
     </style>
+
+
+
 
 {% endblock %}
 
@@ -147,12 +205,74 @@
 
     <div class="wrapper">
         <div class="nav-block" id="nav-block">
-            fixed
+            <nav class="navbar navbar-expand-sm navbar-dark">
+                <a href="/" class="navbar-brand navbar-list">
+                    <div class="brand_logo">
+                        Oil Shop
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar4">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse" id="navbar4">
+                    <ul class="navbar-nav navbar-list" style="margin-left: 20px">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="//codeply.com">Каталог</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Создай свой рецепт</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-        <div class="content">
-            content hellow
+        <div class="about block-content center ">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="card">
+                            <img class="card-img-top" src="{% static 'main/004-ecology.svg' %}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Натурально</h5>
+                                <p class="card-text">Для приготовления нашего масла мы используем только натуральные продукты от проверенных поставщиков.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-4">
+                        <div class="card" >
+                            <img class="card-img-top" src="{% static 'main/002-olive-oil.svg' %}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Большой выбор</h5>
+                                <p class="card-text">На данный момент мы предлагаем много видов масла из разных ингридиентов. Но Вы так же можете заказать масло по своему собственному рецепту.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-4">
+                        <div class="card">
+                            <img class="card-img-top mg-1" src="{% static 'main/003-sun.svg' %}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Полезно</h5>
+                                <p class="card-text">Натуральное масло способвствует хорошей работе организма, ускоряет обмен веществ и повышает Ваше настроение.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+        <div class="products block-content">
+
+        </div>
+        <div class="recipe block-content">
+
+        </div>
+
     </div>
+
 {% endblock %}
 
 
@@ -167,7 +287,8 @@
 
             return elementBottom > viewportTop && elementTop < viewportBottom;
         };
-        $(window).scroll(function () {
+
+        /*$(window).scroll(function () {
 
             if ($('#logo-blck').isInViewport()) {
                 console.log('visib')
@@ -177,7 +298,7 @@
 
             fix_nav(!$('#logo-blck').isInViewport())
         });
-
+*/
         function fix_nav(isFix) {
             if (isFix) {
                 $('#nav-block').css('position', 'fixed').css('top', '0');
